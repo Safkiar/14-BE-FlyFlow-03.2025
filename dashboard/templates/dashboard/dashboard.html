@@ -1,0 +1,62 @@
+{% load static %}
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Bitcoin Dashboard</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/styles.css' %}"
+    />
+  </head>
+  <body>
+    <h2>Bitcoin (USD): {{ price }}</h2>
+
+    <img src="{% url 'chart_month' %}" alt="Wykres miesiąc" />
+
+    <img src="{% url 'chart_24h' %}" alt="Wykres 24h" />
+
+    <h3>Gainers</h3>
+    <h4>Top 5 Gainers (24h)</h4>
+    <ul>
+      {% for item in gainers_24h %}
+      <li>
+        {{ item.symbol }} – Cena: {{ item.price }} – 24h: {{ item.change_24h }}%
+        – 1h: {{ item.change_1h }}%
+      </li>
+      {% endfor %}
+    </ul>
+    <h4>Top 5 Gainers (1h)</h4>
+    <ul>
+      {% for item in gainers_1h %}
+      <li>
+        {{ item.symbol }} – Cena: {{ item.price }} – 1h: {{ item.change_1h }}% –
+        24h: {{ item.change_24h }}%
+      </li>
+      {% endfor %}
+    </ul>
+
+    <h3>Losers</h3>
+
+    <h4>Top 5 Losers (24h)</h4>
+    <ul>
+      {% for item in losers_24h %}
+      <li>
+        {{ item.symbol }} – Cena: {{ item.price }} – 24h: {{ item.change_24h }}%
+        – 1h: {{ item.change_1h }}%
+      </li>
+      {% endfor %}
+    </ul>
+
+    <h4>Top 5 Losers (1h)</h4>
+    <ul>
+      {% for item in losers_1h %}
+      <li>
+        {{ item.symbol }} – Cena: {{ item.price }} – 1h: {{ item.change_1h }}% –
+        24h: {{ item.change_24h }}%
+      </li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>

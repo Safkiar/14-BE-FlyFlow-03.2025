@@ -1,0 +1,12 @@
+python -m venv venv
+venv\Scripts\activate
+pip install django matplotlib requests
+django-admin startproject webapp
+cd webapp
+python manage.py startapp dashboard
+python manage.py migrate
+
+venv\Scripts\activate
+python manage.py runserver
+
+pip install django-livereload-server
