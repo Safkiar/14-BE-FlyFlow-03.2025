@@ -10,10 +10,13 @@ import time
 
 def get_losers_data():
     options = webdriver.ChromeOptions()
-    # Ignore SSL certificate errors
     options.add_argument("--ignore-certificate-errors")
     options.add_argument("--headless")
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+    options.binary_location = "/usr/bin/chromium" 
+    service = Service("/usr/bin/chromedriver")  # Ścieżka do chromedriver
+    driver = webdriver.Chrome(service=service, options=options)
     
     url = "https://finance.yahoo.com/markets/stocks/losers/"
     driver.get(url)

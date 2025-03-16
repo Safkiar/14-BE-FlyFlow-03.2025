@@ -23,8 +23,13 @@ def get_top10_changes(data):
 
 def get_money_rankings():
     options = webdriver.ChromeOptions()
+    options.add_argument("--ignore-certificate-errors")
     options.add_argument("--headless")
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+    options.binary_location = "/usr/bin/chromium" 
+    service = Service("/usr/bin/chromedriver")  # Ścieżka do chromedriver
+    driver = webdriver.Chrome(service=service, options=options)
 
     url = "https://www.money.pl/gielda/indeksy_gpw/wig/"
     driver.get(url)
