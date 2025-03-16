@@ -1,5 +1,7 @@
 from django.http import JsonResponse
 from . import api, future_rankings, usastock, WigMoney, usastock2
+import logging
+logger = logging.getLogger(__name__)
 
 def get_losers_data_api(request):
     losers = usastock2.get_losers_data()
@@ -22,7 +24,13 @@ def get_money_rankings_api(request):
     })
 
 def get_bitcoin_price_api(request):
+    logger.info("🔍 Wywołano `get_bitcoin_price_api`")
+    print("🔍 Wywołano `get_bitcoin_price_api`")  
     price = api.get_bitcoin_price()
+    print(f"✅ Pobieram cenę Bitcoina: {price}")
+    if price is None:
+        logger.error("❌ Błąd: Nie udało się pobrać ceny Bitcoina")
+        return JsonResponse({"error": "Nie udało się pobrać ceny Bitcoina"}, status=500)
     return JsonResponse({"bitcoin_price": price})
 
 def get_future_rankings_api(request):
