@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-27+yixu#o&xqqrx5)wkpi8f-78lj^vayfg&77fs+ip^sq!%0+0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
     'dashboard',
     'livereload',
     'rest_framework',
@@ -126,8 +125,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
-STATICFILES_DIRS = [BASE_DIR / "dashboard" / "static"]
+# STATIC_URL = 'static/'
+#STATICFILES_DIRS = [BASE_DIR / "dashboard" / "static"]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
